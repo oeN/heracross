@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodered
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: nodered
+  template:
+    metadata:
+      labels:
+        app: nodered
+    spec:
+      containers:
+      - image: nodered/node-red:1.2.6-12-minimal
+        imagePullPolicy: Always
+        name: nodered
+        ports:
+        - containerPort: 1880
+        volumeMounts:
+        - mountPath: /data
+          name: nodered-data
+      volumes:
+      - name: nodered-data
+        persistentVolumeClaim:
+          claimName: nodered-data-local-path
