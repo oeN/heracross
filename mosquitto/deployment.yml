@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      containers:
+      - image: eclipse-mosquitto:2.0
+        imagePullPolicy: Always
+        name: mosquitto
+        ports:
+        - containerPort: 1883
+        - containerPort: 9001
+        volumeMounts:
+        - mountPath: /mosquitto/data
+          name: mosquitto-data
+        - mountPath: /mosquitto/config
+          name: mosquitto-config
+          readOnly: true
+        - mountPath: /mosquitto/passwd
+          name: mosquitto-passwd
+          readOnly: true
+      volumes:
+      - name: mosquitto-data
+        persistentVolumeClaim:
+          claimName: mosquitto-data-local-path
+      - name: mosquitto-passwd
+        secret:
+          secretName: mosquitto-passwd
+      - name: mosquitto-config
+        configMap:
+            name: mosquitto-config
+            items:
+              - key: config
+                path: mosquitto.conf

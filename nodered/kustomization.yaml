@@ -1,5 +1,3 @@
-namePrefix: home-automation-
-
 resources:
   - pvc.yaml
   - deployment.yaml
