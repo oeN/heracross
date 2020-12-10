@@ -25,10 +25,8 @@ spec:
           name: mosquitto-data
         - mountPath: /mosquitto/config
           name: mosquitto-config
-          readOnly: true
         - mountPath: /mosquitto/passwd
           name: mosquitto-passwd
-          readOnly: true
       volumes:
       - name: mosquitto-data
         persistentVolumeClaim:
