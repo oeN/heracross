@@ -14,12 +14,16 @@ spec:
         app: mosquitto
     spec:
       containers:
-      - image: eclipse-mosquitto
+      - image: eclipse-mosquitto:1.6.7
         imagePullPolicy: Always
         name: mosquitto
         ports:
-        - containerPort: 1883
-        - containerPort: 9001
+        - name: mqtt
+          containerPort: 1883
+          protocol: TCP
+        - name: ws
+          containerPort: 9001
+          protocol: TCP
         volumeMounts:
         - mountPath: /mosquitto/data
           name: mosquitto-data
@@ -37,6 +41,3 @@ spec:
       - name: mosquitto-config
         configMap:
             name: mosquitto-config
-            items:
-              - key: config
-                path: mosquitto.conf
