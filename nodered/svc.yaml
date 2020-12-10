@@ -3,8 +3,10 @@ kind: Service
 metadata:
   name: nodered
 spec:
+  type: NodePort
   ports:
   - port: 1880
     targetPort: 1880
+    nodePort: 30880
   selector:
     app: nodered

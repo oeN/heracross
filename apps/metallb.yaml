@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  source:
+    path: metallb
+    repoURL: https://github.com/oeN/heracross
+    targetRevision: HEAD
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated: {}
