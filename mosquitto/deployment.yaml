@@ -31,19 +31,6 @@ spec:
           name: mosquitto-config
         - mountPath: /mosquitto/passwd
           name: mosquitto-passwd
-      - image: busybox
-        imagePullPolicy: Always
-        name: debugger
-        args:
-        - sleep
-        - "1000000"
-        volumeMounts:
-        - mountPath: /mosquitto/data
-          name: mosquitto-data
-        - mountPath: /mosquitto/config
-          name: mosquitto-config
-        - mountPath: /mosquitto/passwd
-          name: mosquitto-passwd
       volumes:
       - name: mosquitto-data
         persistentVolumeClaim:
