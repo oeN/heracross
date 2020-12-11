@@ -1,7 +1,5 @@
 resources:
   - namespaces.yaml
-  - nodered.yaml
-  - metallb.yaml
-  - mosquitto.yaml
+  - applications/*.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

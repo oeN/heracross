@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      # the simplest way to let home-assistant works correctly
+      # TODO: check if there is a way to avoid using hostNetwork: true and keeps all the home-assistant features
+      hostNetwork: true
+      containers:
+      - image: homeassistant/raspberrypi4-homeassistant:stable
+        imagePullPolicy: Always
+        name: home-assistant
+        ports:
+        - containerPort: 8123
+        env:
+          - TZ=Europe/Rome
