@@ -1,5 +1,8 @@
 resources:
   - namespaces.yaml
-  - ./applications/*.yaml
+  - applications/metallb.yaml
+  - applications/mosquitto.yaml
+  - applications/nodered.yaml
+  - applications/home-assistant.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
