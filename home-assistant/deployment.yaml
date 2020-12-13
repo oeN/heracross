@@ -26,6 +26,7 @@ spec:
           - name: TZ
             value: Europe/Rome
       - image: debian:bullseye-slim
+        name: debian
         volumeMounts:
         - mountPath: /config
           name: home-assistant-data
