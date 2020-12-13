@@ -4,6 +4,6 @@ resources:
   - applications/mosquitto.yaml
   - applications/nodered.yaml
   - applications/home-assistant.yaml
-  - applications/velero.yaml
+  # - applications/velero.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
